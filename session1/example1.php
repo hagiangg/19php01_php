@@ -9,8 +9,8 @@
 	}
 	echo "<br>";
 	for ($edge = 1; $edge <= 10; $edge ++) {
-		for ($c = 2; $c <= 10 - $edge + 1 ; $c ++) {
-			echo "-";
+		for ($c = 1; $c <= 10 - $edge + 1 ; $c ++) {
+			echo "&nbsp";
 		}
 		for ($s = 2; $s <= $edge +1; $s ++) {
 			echo "* ";
@@ -21,12 +21,10 @@
 
 	echo "<br>";
 	echo "<p class='excercise'>1. Cần có tổng 1.000.000 đồng từ 3 loại tiền 10.000 đồng, 20.000 đồng, 50.000 đồng. Lập chương trình để tìm ra tất cả các phương án có thể</p>";
-	echo "<p class='solution'>Solution:</p>";
-	echo "<p class='details'>";
 	$count = 0;
-		for( $i = 0; $i <= 100; $i++){
-			for ($j = 0; $j <= 50 ; $j++){
-				 for ($z=0; $z <= 20; $z++) { 
+		for( $i = 1; $i <= 100; $i++){
+			for ($j = 1; $j <= 50 ; $j++){
+				 for ($z=1; $z <= 20; $z++) { 
 					if(($i*10000+$j*20000+$z*50000)==1000000){
 						echo "Case ". $count. ":   "."(". $i.")". "    10.000VND   "."(". $j.")   "." 20.000VND "."(". $z. ")"."  50.000VND";
 						$count++;
