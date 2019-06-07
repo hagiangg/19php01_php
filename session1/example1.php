@@ -9,7 +9,7 @@
 	}
 	echo "<br>";
 	for ($edge = 1; $edge <= 10; $edge ++) {
-		for ($c = 1; $c <= 10 - $edge + 1 ; $c ++) {
+		for ($c = 2; $c <= 10 - $edge +1 ; $c ++) {
 			echo "&nbsp";
 		}
 		for ($s = 2; $s <= $edge +1; $s ++) {
