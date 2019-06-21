@@ -22,7 +22,7 @@
 			} else {
 				$errPhone = '';
 			}
-			if (empty($_POST["gender"])) {
+			if (!isset($_POST["gender"])) {
 			    $errGender = "Please select your gender";
 			  } else {
 			    $errGender = "";
@@ -37,11 +37,6 @@
 				$errBirth = 'Please input your birthday';
 			} else {
 				$errBirth = '';
-			}
-			function test_input($data) {
-			    $data = stripslashes($data);
-			    $data = htmlspecialchars($data);
-			    return $data;
 			}
 	
 			echo $_POST['name'];
@@ -72,13 +67,18 @@
 			<p class="error"><?php echo $errPhone; ?> </p>
 		</p>
 		<p>Gender: 
-			<input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="Male"> Male
-			<input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="Female"> Female
-			<input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="Other"> Other
+			<input type="radio" name="gender" <?php if (isset($_POST["gender"]) && $_POST["gender"]=="Male") echo "checked = \"checked\"";?> value="Male"> Male
+			<input type="radio" name="gender" <?php if (isset($_POST["gender"]) && $_POST["gender"]=="Female") echo "checked = \"checked\"";?> value="Female"> Female
+			<input type="radio" name="gender" <?php if (isset($_POST["gender"]) && $_POST["gender"]=="Other") echo "checked = \"checked\"";?> value="Other"> Other
 			<p class="error"><?php echo $errGender; ?> </p>
 		</p>
 		<p>Address: 
-			<input type="text" name="address" value="<?php if(isset($_POST['address'])) {echo $_POST['address']; }?>">
+			<select name="address">
+				<option value=""></option>
+				<option value="Ha Noi" <?php if (isset($_POST['address']) && $_POST['address']=="Ha Noi") echo "selected = \"selected\"";?>>Ha Noi</option>
+				<option value="Da Nang" <?php if (isset($_POST['address']) && $_POST['address']=="Da Nang") echo "selected = \"selected\"";?>>Da Nang</option>
+				<option value="TP HCM" <?php if (isset($_POST['address']) && $_POST['address']=="TP HCM") echo "selected = \"selected\"";?>>TP HCM</option>
+			</select>
 			<p class="error"><?php echo $errAddress; ?> </p>
 		</p>
 		<p>Birthday: 
