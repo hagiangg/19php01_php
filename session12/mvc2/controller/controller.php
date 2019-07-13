@@ -44,6 +44,10 @@
 						$title = $_POST['title'];
 						$description = $_POST['description'];
 						$image = 'default.jpg';
+						if ($_FILES['image']['error'] == 0) {
+				          $image = uniqid().'_'.$_FILES['image']['name'];
+				          move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.$image);
+				        }
 						$posted = date('Y-m-d h:i:s');
 						// save vao database
 						if ($model->addNews($title, $description, $image, $posted) === TRUE) {
@@ -103,6 +107,10 @@
 						$description = $_POST['description'];
 						$price = $_POST['price'];
 						$image = 'default.jpg';
+						if ($_FILES['image']['error'] == 0) {
+				          $image = uniqid().'_'.$_FILES['image']['name'];
+				          move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.$image);
+				        }
 						$created = date('Y-m-d h:i:s');
 						// save vao database
 						if ($model->addProduct($name, $description, $price, $image, $created) === TRUE) {
