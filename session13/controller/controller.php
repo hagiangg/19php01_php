@@ -89,7 +89,7 @@
 					$id = $_GET['id'];
 						$editUser =$model->getUser($id);
 						// edit
-						if (isset($_POST['edit_user_form'])) {
+						if (isset($_POST['edit_user'])) {
 							$username = $_POST['username'];
 						  $password = md5($_POST['password']);
 						  $avatar = 'default.jpg';

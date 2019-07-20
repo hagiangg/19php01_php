@@ -1,5 +1,5 @@
 <h1>Edit users page</h1>
-<form action="admin.php?controller=user&action=edit_user&id=<?php echo $id?>" method="post" enctype="multipart/form-data">
+<form action="admin.php?controller=user&action=edit_user&id=<?php echo $id?>" method="POST" enctype="multipart/form-data">
 	<p>
 		Username
 		<input type="text" name="username" value="<?php echo $editUser['username']?>">

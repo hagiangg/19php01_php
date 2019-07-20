@@ -18,7 +18,7 @@
     <tr>
       <td><?php echo $row['id']?></td>
       <td><?php echo $row['username']?></td>
-<td><img src="uploads/<?php echo $row['avatar']?>" alt="image" class="avatar_user"></td>
+<td><img src="webroot/uploads/<?php echo $row['avatar']?>" alt="image" class="avatar_user"></td>
       <td><a href="admin.php?controller=user&action=edit_user&id=<?php echo $id ?>">Edit</a> | <a href="admin.php?controller=user&action=delete_user&id=<?php echo $id  ?>">Delete</a></td>
     </tr>
   <?php 
