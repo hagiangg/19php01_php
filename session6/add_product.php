@@ -49,7 +49,7 @@
           $errAvatar = 'has-error';
           $errTextAvatar = 'Please chose your avatar';
         }
-        if ($product != '' && $price != '') {
+        if ($product != '' && $price != '' && $description != '' && $dayCreate != '' && $avatar != '') {
           //upload avatar
           if ($_FILES['avatar']['error'] == 0) {
             $avatar = uniqid().'_'.$_FILES['avatar']['name'];

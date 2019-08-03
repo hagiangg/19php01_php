@@ -12,7 +12,7 @@
 	</p>
 	<p>
 		Avatar
-		<input type="file" name="avatar">
+		<input  type="file" name="avatar">
 	</p>
 	<p>
 		<input type="submit" name="add_user" value="Add user">

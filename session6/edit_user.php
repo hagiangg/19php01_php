@@ -34,8 +34,6 @@
         // chuyen dinh dang bithday sang Nam-thang-ngay
         $birthday = date("Y-m-d", strtotime($birthday));
         $gender = isset($_POST['gender'])?$_POST['gender']:NULL;
-        $avatar = 'default.png';
-        // avatar
 
         if ($name == '') {
           $errClassName = 'has-error';

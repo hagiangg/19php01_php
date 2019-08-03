@@ -16,9 +16,38 @@
     <section class="content">
 	    <?php
 	    	include 'connect.php';
-	    	$sql = "SELECT * FROM users";
+	    	$sql = "SELECT * FROM user";
 	    	$result = mysqli_query($connect, $sql);
+        $keyword = '';
+        if (isset($_POST['search'])) {
+          $keyword = $_POST['keyword'];
+          $sql = "SELECT * FROM user WHERE name LIKE '%$keyword%'";
+          $result = mysqli_query($connect, $sql);
+        }
 	    ?>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" action="#" method="POST">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control" name="keyword" placeholder="Enter name" value="<?php echo $keyword;?>">
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="search">Search</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+        </div> 
+       </div>
 	     <div class="row">
         <div class="col-md-12">
           <div class="box">

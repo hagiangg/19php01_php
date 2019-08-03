@@ -15,6 +15,7 @@
     </section>
     <?php 
     	include 'connect.php';
+      
       // lay thong tin cu cua user can edit
       $id = $_GET['id'];
       $sql = "SELECT * FROM products WHERE id = $id";
@@ -31,8 +32,6 @@
         $dayCreate = $_POST['dayCreate'];
         // chuyen dinh dang bithday sang Nam-thang-ngay
         $dayCreate = date("Y-m-d", strtotime($dayCreate));
-        $avatar = 'default.png';
-        // avatar
 
         if ($product == '') {
           $errClassProduct = 'has-error';

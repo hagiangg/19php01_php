@@ -1,5 +1,5 @@
 <h1>Edit product page</h1>
-<form action="index.php?action=edit_product&id=<?php echo $id?>" method="post">
+<form action="index.php?action=edit_product&id=<?php echo $id?>" method="post" enctype="multipart/form-data">
 	<p>Product name
 		<input type="text" name="name" value="<?php echo $editProduct['name']?>">
 	</p>

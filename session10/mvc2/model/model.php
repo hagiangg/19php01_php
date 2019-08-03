@@ -2,16 +2,31 @@
 	include 'config/connectdb.php';
 	class Model extends ConnectDB {
 
-		public function getNews() {
-			$news = 'Test news abc';
-			return $news;
+		public function getNewsPage() {
+			$sql = "SELECT * FROM news";
+			$newsList = mysqli_query($this->connect(), $sql);
+			return $newsList;
 		}
 
-		public function getNewsRelated() {
-			$newsRelated = "Tin lien quan";
-			return $newsRelated;
+		public function getNewsDetail($id) {
+			$newsDetail = 'Tin tuc chi tiet'.$id;
+			return $newsDetail;
 		}
 
+		public function deleteNews($id) {
+			$sql = "DELETE FROM news WHERE id = $id";
+			return mysqli_query($this->connect(), $sql);
+		}
+
+		public function addNews($title, $description, $image, $posted) {
+			$sql = "INSERT INTO news (title, description, image, posted) VALUES ('$title', '$description', '$image', '$posted')";
+			return mysqli_query($this->connect(), $sql);
+		}
+
+		public function editNews($id, $title, $description, $image, $posted) {
+			$sql = "UPDATE news SET title = '$title', description = '$description', image = '$image', posted = '$posted' WHERE id = $id ";
+			return mysqli_query($this->connect(), $sql);
+		}
 		public function getHomePage(){
 			$a = 5;
 			$b = 7;
@@ -39,11 +54,8 @@
 			return mysqli_query($this->connect(), $sql);
 		}
 
-		public function editProduct($name, $description, $price, $image, $created) {
-			$id = $_GET['id'];
-		   	$sql1 = "SELECT * FROM products WHERE id = $id";
-		    $result = mysqli_query($this->connect, $sql1);
-		    $editProduct = $result->fetch_assoc();
+		public function editProduct($id, $name, $description, $price, $image, $created) {	
+				   
 			$sql = "UPDATE products SET name = '$name', description = '$description', price = '$price', image = '$image', created = '$created' WHERE id = $id";
 			return mysqli_query($this->connect(), $sql);
 		}

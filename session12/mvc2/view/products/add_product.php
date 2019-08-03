@@ -1,5 +1,5 @@
 <h1>Add product page</h1>
-<form action="index.php?action=add_product" method="post">
+<form action="index.php?action=add_product" method="post" enctype="multipart/form-data">
 	<p>Product name
 		<input type="text" name="name">
 	</p>

@@ -40,7 +40,6 @@
 						$password = md5($_POST['password']);
 						$avatar = 'default.jpg';
 						if ($_FILES['avatar']['error'] == 0) {
-							$oldImage = $avatar;
 						  $avatar = uniqid().'_'.$_FILES['avatar']['name'];
 						  move_uploaded_file($_FILES['avatar']['tmp_name'], 'webroot/uploads/'.$avatar);
 						  

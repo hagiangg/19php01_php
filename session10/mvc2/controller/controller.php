@@ -17,11 +17,98 @@
 					break;
 				case 'news':
 					// goi model xu ly du lieu
-					$showNews = $model->getNews();
-					$related = $model->getNewsRelated();
+					$newsList = $model->getNewsPage();
 
 					// goi view news
 					include 'view/news/news.php';
+					break;
+				case 'news_detail':
+					$id = $_GET['id'];
+					$newsDetail = $model->getNewsDetail($id);
+					include 'view/news/news_detail.php';
+					break;
+				case 'delete_news':
+				   // lay id cua san pham can xoa
+					$id = $_GET['id'];
+					// goi model thuc hien xoa san pham
+					if ($model->deleteNews($id) === TRUE) {
+						//header("Location: "index.php?action=products);
+						$functionCommon->redirectPage('index.php?action=news');
+					}
+					break;
+				case 'add_News':
+					# code...
+					// check xem da submit add product chua?
+					$errTitle = $errDes = $errImage ='';
+				    $title = $description = '';
+				    $checkAdd = true;
+					if (isset($_POST['add_news_form'])) {
+						$name = $_POST['title'];
+						$description = $_POST['description'];
+						$image = 'default.jpg';
+						$posted = date('Y-m-d h:i:s');
+
+						if ($title == '') {
+					        $errTitle = 'Please input news title';
+					        $checkAdd = false;
+					    }
+					    if ($description == '') {
+					        $errDes = 'Please input news description';
+					        $checkAdd = false;
+					    }
+					    //
+					    if ($checkAdd) {
+					        // check and upoad image
+					        if ($_FILES['image']['error'] == 0) {
+					          $image = uniqid().'_'.$_FILES['image']['name'];
+					          move_uploaded_file($_FILES['image']['tmp_name'], 'uploads'.$image);
+					        }
+							// save vao database
+							if ($model->addNews($title, $description, $image, $posted) === TRUE) {
+								$functionCommon->redirectPage('index.php?action=news');
+							}
+						}
+					}
+					// goi view hien thi trang add product
+					include 'view/news/add_news.php';
+					break;
+				case 'edit_news':
+					$errTitle = $errDes = '';
+					$title = $description = '';
+					$checkAdd = true;
+					//check xem da submit edit product chua?
+					if (isset($_POST['edit_news_form'])) {
+						$name = $_POST['title'];
+						$description = $_POST['description'];
+						$image = 'default.jpg';
+
+						if ($title == '') {
+					        $errTitle = 'Please input news title';
+					        $checkAdd = false;
+					      }
+					      if ($description == '') {
+					        $errDes = 'Please input news description';
+					        $checkAdd = false;
+					      }
+					     if ($checkAdd) {
+					        // check and upoad image
+					        if ($_FILES['image']['error'] == 0) {
+					          $oldImage = $image;
+					          $image = uniqid().'_'.$_FILES['image']['name'];
+					          move_uploaded_file($_FILES['image']['tmp_name'], 'uploads'.$image);
+					          // Xoa anh cu neu chon anh moi (tru truong hop a cu la anh default)
+					          if ($oldImage != 'default.jpg') {
+					            unlink("uploads".$oldImage);  
+					          }
+					        }
+						// save vao database
+						if ($model->editNews($title, $description, $image) === TRUE) {
+							$functionCommon->redirectPage('index.php?action=news');
+						}
+					  }
+					}
+					// goi view hien thi trang add product
+					include 'view/news/edit_news.php';
 					break;
 				case 'products':
 					// goi model xu ly du lieu
