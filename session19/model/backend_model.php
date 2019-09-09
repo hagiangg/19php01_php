@@ -17,8 +17,8 @@ class BackendModel extends DatabaseConnect {
 		$result = mysqli_query($this->connect(), $sql);
 		return $result->fetch_assoc();
 	}
-	function editUser($id, $username, $password){
-		$sql = "UPDATE users SET username = '$username', password = '$password' WHERE id = $id";
+	function editUser($id, $role, $username, $password, $name, $email, $phone, $birthday, $avatar){
+		$sql = "UPDATE users SET role = '$role', username = '$username', password = '$password', name = '$name', email = '$email', phone = '$phone', birthday = '$birthday', avatar = '$avatar' WHERE id = $id";
 		return mysqli_query($this->connect(),$sql);
 	}
 	

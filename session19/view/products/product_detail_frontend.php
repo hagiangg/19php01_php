@@ -32,9 +32,13 @@
 
 	</div>
 	<div class="comment_content">
-		<form action="index.php?controller=comment&action=add_comment&product_id=<?php echo $productDetail['id']?>" method="POST">
-		<textarea name="content" rows="5" cols="40"></textarea>
-		<input type="submit" name="comment" value="Comment">
+		<form action="index.php?controller=comment&action=add_comment" method="POST">
+			<input type="hidden" name="user_id" value="<?php echo $productDetail['id'] ?>">
+			<input type="hidden" name="product_id" value="<?php echo $productDetail['id']?>">
+			<textarea cols="100" rows="10" name="content"></textarea>
+			<p>
+				<input type="submit" name="comment" value="Comment">
+			</p>
 		</form>
 	</div>
 </div>

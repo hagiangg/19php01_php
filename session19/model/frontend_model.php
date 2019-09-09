@@ -54,10 +54,10 @@ class FrontendModel extends DatabaseConnect {
 		$sql = "SELECT id FROM products WHERE name = '$name'";
 		return mysqli_query($this->connect(), $sql);
 	}
-	function addComment($user_id, $product_id, $content) {
+	function addComment($product_id, $user_id, $content) {
 		$created = date('Y-m-d h:i:s');
 		$status = 1;
-		$sql = "INSERT INTO comments(user_id, product_id, content, created, status) VALUES($user_id, $product_id, '$content', '$created', $status)";
+		$sql = "INSERT INTO comments(product_id, user_id, content, created, status) VALUES($product_id, $user_id, '$content', '$created', $status)";
 		return mysqli_query($this->connect(), $sql);
 	}
 	function getCommentList($product_id) {

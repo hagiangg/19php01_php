@@ -19,7 +19,7 @@
         <?php if ($comment['status'] == 0) {?>
           Đã approve 
         <?php } else {?>
-          <a href="admin.php?controller=comments&action=approve&id=<?php echo $id?>">Chưa approve</a>
+          <a href="admin.php?controller=comment&action=approve&id=<?php echo $id?>">Chưa approve</a>
         <?php }?>
       </td>
     </tr>

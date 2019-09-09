@@ -122,13 +122,12 @@
 							$users = $model->getUserID($_SESSION['login']['username']);
 							$user_id = $users->fetch_assoc();
 							$user_id = $user_id['id'];
-							if ($model->addComment($user_id, $product_id, $content) === TRUE) {
-								header("Location:index.php?controller=products&action=product_detail&id=$product_id");
+							if ($model->addComment($product_id, $user_id, $content) === TRUE) {
+								header("Location:index.php?controller=product&action=product_detail&id=$product_id");
 							}
 						} else {
-							header("Location:index.php?controller=users&action=login");
+							header("Location: index.php?controller=user&action=login");
 						}
-						
 					}
 					break;
 				default:

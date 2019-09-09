@@ -121,19 +121,34 @@
 					break;
 				case 'edit_user':
 					$id = $_GET['id'];
-					$model = new BackendModel();
-					$editUser =$model->getUser($id);
-					// edit
-					if (isset($_POST['edit_user'])) {
-						$username = $_POST['username'];
-					  $password = md5($_POST['password']);
-					}
-					 // edit vao database
-					if ($model->editUser($id,$username, $password) === TRUE) {
-						header("Location: admin.php?controller=user&action=list_user");
-					}
-					
-					include 'view/user/edit_user.php';
+						$model = new BackendModel();
+						$editUser =$model->getUser($id);
+						// edit
+						if (isset($_POST['edit_user'])) {
+							$role = $_POST['role'];
+							$username = $_POST['username'];
+						  $password = md5($_POST['password']);
+						  $name = $_POST['name'];
+						  $email = $_POST['email'];
+						  $phone = $_POST['phone'];
+						  $birthday = $_POST['birthday'];
+						  $avatar = 'default.jpg';
+						  if ($_FILES['avatar']['error'] == 0) {
+							$oldImage = $avatar;
+						  $avatar = uniqid().'_'.$_FILES['avatar']['name'];
+						  move_uploaded_file($_FILES['avatar']['tmp_name'], 'webroot/uploads/users'.$avatar);
+						  // Xoa anh cu neu chon anh moi (tru truong hop a cu la anh default)
+						  if ($oldImage != 'default.jpg') {
+           					 unlink("webroot/uploads/users".$oldImage);  
+         				 }
+						}
+						 // edit vao database
+						if ($model->editUser($id, $role, $username, $password, $name, $email, $phone, $birthday, $avatar) === TRUE) {
+							header("Location: admin.php?controller=user&action=list_user");
+						}
+						}
+						include 'view/users/edit_user.php';
+						
 					break;
 				default:
 					# code...
@@ -141,19 +156,27 @@
 			}
 		}
 
-		function handleComments($action, $backModel, $libs) {
+		function handleComment($action) {
 			switch ($action) {
 					case 'list_comment':
-						$listComment = $backModel->getCommentList();
+						$model = new BackendModel();
+						$listComment = $model->getCommentList();
 						include 'view/comments/list_comment.php';
 						break;
 					case 'approve':
 						$id = $_GET['id'];
-						if ($backModel->approveComment($id) === TRUE) {
-							$libs->redirectPage('admin.php?controller=comments&action=list_comment');
+						$model = new BackendModel();
+						if ($model->approveComment($id) === TRUE) {
+							header("Location: admin.php?controller=comment&action=list_comment");
 						}
 						# code...
 						break;
+					case 'delete_comment':
+						$id = $_GET['id'];
+						$model = new FrontendModel();
+						if($model->deleteComment($id)===TRUE){
+						header("Location: admin.php?controller=comment&action=list_comment");
+					}
 					default:
 						# code...
 						break;

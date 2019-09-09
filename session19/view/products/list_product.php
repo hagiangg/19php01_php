@@ -1,5 +1,6 @@
 <p><a href="admin.php?controller=product&action=add_product">Add product</a></p>
 <p><a href="admin.php?controller=product&action=add_product_category">Add product category</a></p>
+<p><a href="admin.php?controller=comment&action=list_comment">List comment</a></p>
 <table class="table table-bordered">
   <tr>
     <th style="width: 10px">#</th>
